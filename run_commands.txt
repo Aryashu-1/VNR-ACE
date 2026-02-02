@@ -1,0 +1,5 @@
+COMMANDS TO START BACKEND:
+
+--> poetry env activate
+--> //paste the path
+--> poetry run uvicorn app:app --reload
