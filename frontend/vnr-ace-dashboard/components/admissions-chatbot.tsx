@@ -40,7 +40,7 @@ export function AdmissionsChatbot() {
         headers: { "Content-Type": "application/x-www-form-urlencoded" },
         body: new URLSearchParams({
           username: "admin@vnr.com",
-          password: "password123",
+          password: "admin123",
         }),
       })
 

@@ -134,7 +134,7 @@ async def data_fetcher(state: ClassworkState):
     except Exception as e:
         print(f"    -> Error loading data: {e}")
         # Fallback to empty list or mock if needed, but error is better for debugging
-        return {"unified_dataset": [], "final_response": "Error: Could not access student database."}
+        return {"unified_dataset": []}
 
 async def aggregation_reasoning_engine(state: ClassworkState):
     """

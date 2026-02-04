@@ -6,16 +6,12 @@ from langgraph.prebuilt import ToolNode
 from typing import TypedDict, Optional
 
 from core.llm import call_llm
-from core.auth import require_role
-from core.auth import get_current_user
 
 # ---------------------------
 #   State Definition
 # ---------------------------
 
 class AdmissionsState(TypedDict):
-    user_id: Optional[int]
-    role_id: Optional[int]
     message: str
     reply: Optional[str]
     route: Optional[str]  # which agent the supervisor selected

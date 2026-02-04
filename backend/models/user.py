@@ -11,4 +11,4 @@ class User(Base):
     role_id = Column(Integer, ForeignKey("roles.id"), nullable=False)
 
     # helpful for eager relations later
-    # role = relationship("Role")
+    role = relationship("Role")

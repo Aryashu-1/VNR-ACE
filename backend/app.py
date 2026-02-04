@@ -1,5 +1,6 @@
 from fastapi import FastAPI, Depends
 from fastapi.middleware.cors import CORSMiddleware
+from contextlib import asynccontextmanager
 
 from core.auth import router as auth_router
 from routes.admissions import router as admissions_router
@@ -8,7 +9,12 @@ from placements.router import router as placements_router
 from routes.test_rbac import router as test_rbac_router
 
 from core.deps import role_required
+from fastapi import FastAPI
+from core.db import engine, Base
 
+# IMPORTANT: import models so metadata registers
+from models.user import User
+from models.role import Role
 
 app = FastAPI(title="VNR-ACE Backend")
 
@@ -19,6 +25,21 @@ origins = [
     "http://localhost:3000",
     "http://127.0.0.1:3000",
 ]
+
+@asynccontextmanager
+async def lifespan(app: FastAPI):
+    # Startup logic
+    async with engine.begin() as conn:
+        await conn.run_sync(Base.metadata.create_all)
+
+    yield
+
+    # Shutdown logic (optional)
+    # await engine.dispose()
+
+
+app = FastAPI(lifespan=lifespan)
+
 
 app.add_middleware(
     CORSMiddleware,

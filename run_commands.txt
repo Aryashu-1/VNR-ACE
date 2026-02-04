@@ -2,4 +2,5 @@ COMMANDS TO START BACKEND:
 
 --> poetry env activate
 --> //paste the path
+"C:\Users\Work\AppData\Local\pypoetry\Cache\virtualenvs\vnr-ace-backend-bveko3Pd-py3.11\Scripts\activate.ps1"
 --> poetry run uvicorn app:app --reload

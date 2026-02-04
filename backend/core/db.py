@@ -1,13 +1,17 @@
+import os
+from dotenv import load_dotenv
+
 from sqlalchemy.ext.asyncio import create_async_engine, async_sessionmaker
 from sqlalchemy.orm import declarative_base
-from core.config import settings
 
 # Base class for all models
-Base = declarative_base()
 
+load_dotenv()
+Base = declarative_base()
+DATABASE_URL = os.getenv("DATABASE_URL")
 # Async engine for PostgreSQL
 engine = create_async_engine(
-    settings.DATABASE_URL,
+    DATABASE_URL,  # Update with your database URL
     echo=True,  # shows SQL queries in terminal, helpful for debugging
 )
 
@@ -15,7 +19,7 @@ engine = create_async_engine(
 AsyncSessionLocal = async_sessionmaker(
     bind=engine,
     expire_on_commit=False,
-)
+)   
 
 # Dependency for FastAPI routes
 async def get_db():

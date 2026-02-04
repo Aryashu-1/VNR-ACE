@@ -1,4 +1,3 @@
-
 import sys
 import os
 
@@ -20,9 +19,6 @@ from models.role import Role
 
 # Access Alembic Config
 config = context.config
-
-# Override with DATABASE_URL from our config
-config.set_main_option("sqlalchemy.url", settings.DATABASE_URL)
 
 # Interpret config file for logging
 if config.config_file_name is not None:
